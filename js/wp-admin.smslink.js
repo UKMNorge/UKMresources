@@ -1,3 +1,4 @@
 jQuery(document).ready(function(){
-	jQuery('.UKMSMS').html( '<a href="javascript:alert(\'kommer snart \')">'+ jQuery(this).html() + '</a>');
+	number = jQuery(this).html();
+	jQuery('.UKMSMS').html( '<a href="javascript:alert(\'kommer snart \')">'+ number + '</a>');
 });
