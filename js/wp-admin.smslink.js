@@ -1,4 +1,5 @@
 jQuery(document).ready(function(){
-	number = jQuery(this).html();
-	jQuery('.UKMSMS').html( '<a href="javascript:alert(\'kommer snart \')">'+ number + '</a>');
+	jQuery('.UKMSMS').each(function(){
+		jQuery(this).html( '<a href="javascript:alert(\'kommer snart \')">'+ jQuery(this).html() + '</a>');
+	});
 });
