@@ -20,6 +20,6 @@ function UKMresources() {
 	wp_enqueue_script('jqueryGoogleUI', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js');
 	wp_enqueue_script('wp-admin_smslink', plugin_dir_url( __FILE__ ) .'js/wp-admin.smslink.js');
 	
-	wp_enqueue_script('UKMresources_wp-admin', plugin_dir_url( __FILE__ ) .'js/UKMresources_wp-admin.js');
+	wp_enqueue_script('UKMresources_wp-adminJS', plugin_dir_url( __FILE__ ) .'js/UKMresources_wp-admin.js');
 
 }
