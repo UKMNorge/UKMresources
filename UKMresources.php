@@ -22,4 +22,8 @@ function UKMresources() {
 	
 	wp_enqueue_script('UKMresources_wp-admin', plugin_dir_url( __FILE__ ) .'js/UKMresources_wp-admin.js');
 
+
+	wp_register_script('bootstrap_js', plugin_dir_url( __FILE__ ) .'js/boostrap.min.js');
+	wp_register_style('bootstrap_css', plugin_dir_url( __FILE__ ) .'css/boostrap.min.css');
+
 }
