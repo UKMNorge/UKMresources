@@ -9,7 +9,7 @@ jQuery(document).ready(function(){
 
 	registerUKMSMS('body');
 	
-	jQuery.on('click', '.UKMSMS_link', function() {
+	jQuery(document).on('click', '.UKMSMS_link', function() {
 		jQuery('#UKMSMS_to').val(jQuery(this).attr('data-to'));
 		jQuery('#UKMSMS_form').submit();
 	});
