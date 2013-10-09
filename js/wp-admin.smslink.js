@@ -1,7 +1,7 @@
 jQuery(document).ready(function(){
 	var url = window.location.href.split('?')[0] + '?page=UKMSMS_gui';
 	var form = jQuery('<form action="' + url + '" method="post" id="UKMSMS_form">' +
-						 '<input type="hidden" name="sms_to" id="UKMSMS_to" value="" />' +
+						 '<input type="hidden" name="UKMSMS_recipients" id="UKMSMS_to" value="" />' +
 					  '</form>');
 	jQuery('body').append(form);
 
