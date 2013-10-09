@@ -3,7 +3,7 @@ jQuery(document).ready(function(){
 });
 
 
-registerUKMSMS(selector) {
+function registerUKMSMS(selector) {
 	jQuery(selector).find('.UKMSMS').each(function(){
 		jQuery(this).html( '<a href="javascript:alert(\'kommer snart \')">'+ jQuery(this).html() + '</a>');
 	});
