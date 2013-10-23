@@ -21,6 +21,7 @@ function UKMresources() {
 	wp_enqueue_script('wp-admin_smslink', plugin_dir_url( __FILE__ ) .'js/wp-admin.smslink.js');
 	
 	wp_enqueue_script('UKMresources_wp-admin', plugin_dir_url( __FILE__ ) .'js/UKMresources_wp-admin.js');
+	wp_enqueue_script('UKMresources_tabs', plugin_dir_url( __FILE__ ) .'js/UKMresources_tabs.js');
 
 
 	wp_register_script('handlebars_js', plugin_dir_url( __FILE__ ) .'js/handlebars.js');
