@@ -3,9 +3,21 @@ jQuery(document).ready(function(){
 		jQuery(this).find('#lagre').html('Lagrer...');
 		jQuery(this).parents('form').find('input[type=submit]').click();
 	});
+});
 
-	jQuery.urlParam = function(name){
-	    var results = new RegExp('[\\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
-	    return results[1] || 0;
-	}
+
+jQuery.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++){
+      hash = hashes[i].split('=');
+      vars.push(hash[0]);
+      vars[hash[0]] = hash[1];
+    }
+    return vars;
+  },
+  getUrlVar: function(name){
+    return jQuery.getUrlVars()[name];
+  }
 });
