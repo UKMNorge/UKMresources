@@ -21,3 +21,13 @@ function registerUKMSMS(selector) {
 		jQuery(this).html( '<a href="#" class="UKMSMS_link" data-to="'+jQuery(this).html()+'">'+ jQuery(this).html() + '</a>');
 	});
 }
+
+
+jQuery(document).on('click','#UKMSMSTOALL', function(){
+	var recipients = new Array();
+	jQuery('.UKMSMS').each(function(){
+		recipients.push( jQuery(this).find('a').html() );
+	});
+	jQuery('#UKMSMS_to').val( recipients.join(',') );
+	jQuery('#UKMSMS_form').submit();
+});
