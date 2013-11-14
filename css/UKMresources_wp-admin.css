@@ -24,3 +24,7 @@
 #hugesubmit:hover {
 	background: #b7e580;
 }
+
+.clickable {
+	cursor: pointer;
+}
