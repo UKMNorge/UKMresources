@@ -32,3 +32,6 @@
 .UKMwidth {
 	width:750px;
 }
+.UKMwidth.well {
+ width: 710px;
+}
