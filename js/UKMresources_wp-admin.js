@@ -6,7 +6,7 @@ jQuery(document).ready(function(){
 });
 
 jQuery(document).on('click','.toggle', function(){
-    if(jQuery(this).attr('data-action') == 'show') {
+    if(jQuery(this).attr('data-action') == undefined || jQuery(this).attr('data-action') == 'show') {
         jQuery( jQuery(this).attr('data-toggle') ).slideDown();
         jQuery(this).attr('data-action', 'hide');
     } else {
