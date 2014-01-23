@@ -7115,3 +7115,11 @@ td.visible-print {
     display: none !important;
   }
 }
+@media print {
+  a[href]:after {
+    content: none !important;
+  }
+  .pagebreak {
+  	page-break-after:always;
+  }
+}
