@@ -35,3 +35,13 @@
 .UKM_tabs a div > span.tab_header{font-size:14px; font-weight: bold;}
 .UKM_tabs a div > img{display:block; float:left;}
 .UKM_content_wrapper { padding: 10px 0 10px 9px; border-left:1px solid #ccc;}
+
+.UKM_tabs_5 a {
+	width: 160px;
+	display: inline-block;
+}
+.UKM_tabs_5 a div > span.tab_description{
+	display:block;
+	clear: both;
+	margin-left: 0px;
+}
