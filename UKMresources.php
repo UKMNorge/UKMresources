@@ -34,5 +34,9 @@ function UKMresources() {
 	wp_register_script('WPbootstrap3_js', plugin_dir_url( __FILE__ ) .'js/bootstrap3.js');
 	wp_register_style('WPbootstrap3_css', plugin_dir_url( __FILE__ ) .'css/bootstrap3.css');
 	
+	wp_register_script('WPbootstrap4_js', plugin_dir_url( __FILE__ ) .'js/bootstrap4-alpha2.min.js');
+	wp_register_style('WPbootstrap4_css', plugin_dir_url( __FILE__ ) .'css/bootstrap4-alpha2.min.css');
+	
+	
 	wp_register_script( 'TwigJS', plugin_dir_url( __FILE__ ) .'js/twig.js');
 }
