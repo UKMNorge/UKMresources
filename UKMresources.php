@@ -11,6 +11,13 @@ Author URI: http://www.ukm-norge.no
 
 add_action( 'admin_enqueue_scripts', 'UKMresources' );
 
+function get_ukm_option( $key ) {
+	return get_site_option( 'UKMpl'. get_option('pl_id') .'_'. $key );
+}
+function update_ukm_option( $key, $val ) {
+	return update_site_option( 'UKMpl'. get_option('pl_id') .'_'. $key, $val );
+}
+
 
 function UKMresources() {
 	wp_enqueue_style( 'jquery-ui-style', plugin_dir_url( __FILE__ ) .'css/jquery-ui-1.7.3.custom.css');
