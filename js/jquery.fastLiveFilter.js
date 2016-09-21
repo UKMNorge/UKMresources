@@ -47,7 +47,7 @@ jQuery.fn.fastLiveFilter = function(list, options) {
 				}
 			}
 		}
-		callback(numShown);
+		callback(numShown, jQuery(this).attr('id'));
 		// var endTime = new Date().getTime();
 		// console.log('Search for ' + filter + ' took: ' + (endTime - startTime) + ' (' + numShown + ' results)');
 		return false;
