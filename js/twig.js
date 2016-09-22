@@ -5083,3 +5083,15 @@ if (typeof module !== 'undefined' && module.declare) {
     window.twig = Twig.exports.twig;
     window.Twig = Twig.exports;
 }
+
+Twig.extendFilter('round', function(value, params) {
+	if( null != params && undefined != params && null != params[1] && undefined != params[1] ) {
+		switch( params[1] ) {
+			case 'floor':
+				return Math.floor( value );
+			case 'ceil':
+				return Math.ceil( value );
+		}
+	}
+    return Math.round( value );
+});

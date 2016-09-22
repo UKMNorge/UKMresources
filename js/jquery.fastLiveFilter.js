@@ -36,6 +36,10 @@ jQuery.fn.fastLiveFilter = function(list, options) {
 				(li.textContent || li.innerText || "") : 
 				$(li).find(options.selector).text();
 			
+			if( null != $(li).attr('data-filter') && undefined != $(li).attr('data-filter') ) {
+				innerText = $(li).attr('data-filter');
+			}
+			
 			if (innerText.toLowerCase().indexOf(filter) >= 0) {
 				if (li.style.display == "none") {
 					li.style.display = oldDisplay;

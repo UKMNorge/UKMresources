@@ -1,4 +1,10 @@
-.btn-outline {
+.label-outline {
+	border: 1px solid;
+}
+.label-outline.label-warning {
+	border-color: #f0ad4e;
+}
+.btn-outline, .label-outline {
     background-color: transparent;
     color: inherit;
     transition: all .5s;
@@ -16,7 +22,8 @@
     color: #5bc0de;
 }
 
-.btn-warning.btn-outline {
+.btn-warning.btn-outline,
+.label-warning.label-outline {
     color: #f0ad4e;
 }
 
