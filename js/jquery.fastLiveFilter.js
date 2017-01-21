@@ -5,6 +5,7 @@
  * License: <http://www.opensource.org/licenses/bsd-license.php>
  * Project Website: http://anthonybush.com/projects/jquery_fast_live_filter/
  **/
+$ = jQuery;
 
 jQuery.fn.fastLiveFilter = function(list, options) {
 	// Options: input, list, timeout, callback
