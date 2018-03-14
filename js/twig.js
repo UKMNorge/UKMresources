@@ -5095,3 +5095,10 @@ Twig.extendFilter('round', function(value, params) {
 	}
     return Math.round( value );
 });
+
+Twig.extendFilter('floor', function(value) {
+    return Math.floor( value );
+});
+Twig.extendFilter('ceil', function(value) {
+    return Math.ceil( value );
+});
