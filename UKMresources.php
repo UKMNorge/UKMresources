@@ -9,7 +9,7 @@ Author URI: http://www.ukm-norge.no
 */
 
 
-add_action( 'admin_enqueue_scripts', 'UKMresources' );
+add_action( 'admin_enqueue_scripts', 'UKMresources', -1000 );
 add_action( 'admin_print_scripts', 'UKMseason' );
 function UKMresources() {
 	wp_enqueue_style( 'jquery-ui-style', plugin_dir_url( __FILE__ ) .'css/jquery-ui-1.7.3.custom.css');
@@ -22,6 +22,7 @@ function UKMresources() {
 	wp_enqueue_script('wp-admin_smslink', plugin_dir_url( __FILE__ ) .'js/wp-admin.smslink.js');
 	
 	wp_enqueue_script('UKMresources_wp-admin', plugin_dir_url( __FILE__ ) .'js/UKMresources_wp-admin.js');
+	wp_enqueue_script('UKMresources', plugin_dir_url( __FILE__ ) .'js/UKMresources.js');
 
 	wp_register_script('handlebars_js', plugin_dir_url( __FILE__ ) .'js/handlebars.js');
 
