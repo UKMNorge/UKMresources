@@ -1,41 +1,29 @@
-#hugesubmit {
-	border-color: #0a6158;
-	border-style: solid;
-	border-width: 1px;
-	cursor: pointer;
-	position: fixed;
-	left: 970px;
-	top: 124px;
-	background: #a0cf67;
-	color: #1e4a45;
-	font-weight: normal;
-	font-size: 14px;
-	text-align: center;
-	-moz-border-radius: 10px; /* Firefox */
-  	-webkit-border-radius: 10px; /* Safari, Chrome */
- 	border-radius: 10px; /* CSS3 */
- 	padding: 45px;
-}
-#hugesubmit div#lagre {
-	font-size: 24px;
-	font-weight: bold;
-	margin-bottom: 8px;
-}
-#hugesubmit:hover {
-	background: #b7e580;
-}
-
 .clickable {
-	cursor: pointer;
+    cursor: pointer;
 }
 
-.UKMwidth {
-	width:750px;
-}
-.UKMwidth.well {
- width: 710px;
+.uppercase {
+    text-transform: uppercase;
 }
 
+.lowercase {
+    text-transform: lowercase;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.normal {
+    font-weight: normal;
+}
+
+
+/* OPTIONCARDS */
 
 .optionCard .dashicons {
     font-size: 3em;
@@ -60,4 +48,67 @@
     font-weight: bold;
     font-size: 1.3em;
     margin-bottom: 0.2em;
+}
+
+
+/* FORM-CONTROL */
+
+.form-control.input-lg {
+    height: 46px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.form-control {
+    margin-bottom: 1em;
+}
+
+input[type='checkbox'].form-control {
+    margin-top: -0.1em;
+    margin-right: 0.5em;
+}
+
+
+/* MARGIN-HELPERS */
+
+.mt-5 {
+    margin-top: 3em;
+}
+
+
+/* FADE-COLLAPSIBLE */
+
+.fade-collapsible>.content {
+    position: relative;
+    max-height: 100px;
+    overflow: hidden;
+    transition: max-height 1s ease;
+}
+
+.fade-collapsible>.content.-expanded {
+    max-height: 90vh;
+    overflow: scroll;
+}
+
+.fade-collapsible>.content:not(.-expanded)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+}
+
+.fade-collapsible>.actions {
+    text-align: center;
+    cursor: pointer;
+}
+
+.fade-collapsible>.actions .dashicons {
+    font-size: 2em;
 }

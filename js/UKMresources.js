@@ -1,6 +1,26 @@
 var UKMresources = {};
 
 /**
+ * Fade-collapsible
+ */
+jQuery(document).on('click', '.fade-collapsible .actions', function() {
+    var collapsible = $(this).parents('.fade-collapsible');
+    var content = collapsible.find('.content');
+
+    content.toggleClass('-expanded');
+
+    if (content.hasClass('-expanded')) {
+        collapsible.find('.actions .icon')
+            .removeClass('dashicons-arrow-down-alt2')
+            .addClass('dashicons-arrow-up-alt2');
+    } else {
+        collapsible.find('.actions .icon')
+            .removeClass('dashicons-arrow-up-alt2')
+            .addClass('dashicons-arrow-down-alt2');
+    }
+});
+
+/**
  * Sett opp en jobb-liste
  * 
  * Options.elementHandler( elementID )
@@ -9,7 +29,7 @@ var UKMresources = {};
  * @param String queue_id 
  * @param {*} options
  */
-UKMresources.workQueue = function (queue_id, options) {
+UKMresources.workQueue = function(queue_id, options) {
     var worker = -1;
     var items = [];
 
@@ -25,7 +45,7 @@ UKMresources.workQueue = function (queue_id, options) {
          * @param String id 
          * @return Void
          */
-        add: function (id) {
+        add: function(id) {
             items.push(id);
             self.length = items.length;
         },
@@ -35,7 +55,7 @@ UKMresources.workQueue = function (queue_id, options) {
          * @param String id 
          * @return Void
          */
-        push: function (id) {
+        push: function(id) {
             self.add(id);
         },
 
@@ -43,12 +63,12 @@ UKMresources.workQueue = function (queue_id, options) {
          * Utfør neste element i listen
          * @return Void
          */
-        next: function () {
+        next: function() {
             worker++;
             if (worker >= items.length) {
                 return self.done();
             }
-            var result = self.execute(items[worker] );
+            var result = self.execute(items[worker]);
             self.bind(result);
         },
 
@@ -58,7 +78,7 @@ UKMresources.workQueue = function (queue_id, options) {
          * @param Any result 
          * @return void
          */
-        bind: function (result) {
+        bind: function(result) {
             result.on('success', self.handleSuccess);
             result.on('success', self.count);
             result.on('success', self.next);
@@ -74,9 +94,9 @@ UKMresources.workQueue = function (queue_id, options) {
          * @param String|{*} status 
          * @emits 'status_update', [Map statusCount, Int current job, String|Any status]
          */
-        count: function (status) {
-            if( self.filterCountData !== undefined ) {
-                var status = self.filterCountData( status );
+        count: function(status) {
+            if (self.filterCountData !== undefined) {
+                var status = self.filterCountData(status);
             }
             if (statusCount.has(status)) {
                 statusCount.set(status, statusCount.get(status) + 1);
@@ -92,7 +112,7 @@ UKMresources.workQueue = function (queue_id, options) {
          * @param String id 
          * @param Callable callback 
          */
-        on: function (id, callback) {
+        on: function(id, callback) {
             queue_emitter.on(id, callback);
         },
 
@@ -100,7 +120,7 @@ UKMresources.workQueue = function (queue_id, options) {
          * Start behandling av køen
          * @emits 'start'
          */
-        start: function () {
+        start: function() {
             queue_emitter.emit('start');
             self.next();
         },
@@ -109,7 +129,7 @@ UKMresources.workQueue = function (queue_id, options) {
          * Køen er behandlet
          * @emits 'done'
          */
-        done: function () {
+        done: function() {
             queue_emitter.emit('done', [worker, self.length]);
         },
 
@@ -119,7 +139,7 @@ UKMresources.workQueue = function (queue_id, options) {
          * @param {*} data 
          * @emits 'success', data
          */
-        handleSuccess: function (data) {
+        handleSuccess: function(data) {
             queue_emitter.emit('success', data);
         },
 
@@ -128,21 +148,21 @@ UKMresources.workQueue = function (queue_id, options) {
          * @param {*} data 
          * @emits 'error', data
          */
-        handleError: function (message, raw_data) {
+        handleError: function(message, raw_data) {
             queue_emitter.emit('error', raw_data);
         }
     };
 
-    if( options.filterCountData !== undefined ) {
+    if (options.filterCountData !== undefined) {
         self.filterCountData = options.filterCountData;
     }
 
     return self;
 }
 
-UKMresources.GUI = function ($) {
+UKMresources.GUI = function($) {
 
-    return function (options) {
+    return function(options) {
         /*
         var options = {
             containers: {
@@ -155,7 +175,7 @@ UKMresources.GUI = function ($) {
         }
         */
         var self = {
-            handleFatalError: (message) => {            
+            handleFatalError: (message) => {
                 $(options.containers.main).slideUp();
                 $(options.containers.fatalError)
                     .html('Beklager, en kritisk feil har oppstått. ' +
@@ -192,10 +212,10 @@ UKMresources.GUI = function ($) {
 }(jQuery);
 
 
-UKMresources.Request = function ($) {
+UKMresources.Request = function($) {
     var count = 0;
 
-    return function (options) {
+    return function(options) {
         var GUI = UKMresources.GUI(options);
 
         var self = {
@@ -226,19 +246,19 @@ UKMresources.Request = function ($) {
                 count++;
                 GUI.showLoading();
 
-                data.action = options.action;//'UKMresources_ajax';
+                data.action = options.action; //'UKMresources_ajax';
                 data.module = options.module;
                 data.controller = options.controller;
                 data.count = count;
 
-                $.post(ajaxurl, data, function (response) {
-                    GUI.hideLoading();
-                    try {
-                        self.handleResponse(response);
-                    } catch (error) {
-                        GUI.handleFatalError('En ukjent feil oppsto: '+ error);
-                    }
-                })
+                $.post(ajaxurl, data, function(response) {
+                        GUI.hideLoading();
+                        try {
+                            self.handleResponse(response);
+                        } catch (error) {
+                            GUI.handleFatalError('En ukjent feil oppsto: ' + error);
+                        }
+                    })
                     .fail((response) => {
                         GUI.hideLoading();
                         GUI.handleFatalError('En ukjent server-feil oppsto');
@@ -252,38 +272,38 @@ UKMresources.Request = function ($) {
 }(jQuery);
 
 
-UKMresources.emitter = function( _navn ) {
-	var _events = [];
-	
-	var navn = (_navn !== undefined && _navn !== null) ? _navn.toUpperCase() : 'UKJENT';
-	
-	var self = {
-		/* EVENT HANDLERS */
-		emit: function( event, data ) {
-			
-			//console.info( navn + '::emit('+event+')', data);
-			if( _events[event] != null ) {
-				_events[event].forEach( function( _event ) {
-                    if( !Array.isArray( data ) ) {
+UKMresources.emitter = function(_navn) {
+    var _events = [];
+
+    var navn = (_navn !== undefined && _navn !== null) ? _navn.toUpperCase() : 'UKJENT';
+
+    var self = {
+        /* EVENT HANDLERS */
+        emit: function(event, data) {
+
+            //console.info( navn + '::emit('+event+')', data);
+            if (_events[event] != null) {
+                _events[event].forEach(function(_event) {
+                    if (!Array.isArray(data)) {
                         data = [data];
                     }
-                    _event.apply(null, data );
-				});
-			}
-			return self;
-		},
-		
-		on: function( event, callback ) {
-			if( _events[event] == null ) {
-				_events[ event ] = [callback];
-				return;
-			}
-			_events[ event ].push( callback );
-			return self;
-		}
-	};
-	
-	return self;
+                    _event.apply(null, data);
+                });
+            }
+            return self;
+        },
+
+        on: function(event, callback) {
+            if (_events[event] == null) {
+                _events[event] = [callback];
+                return;
+            }
+            _events[event].push(callback);
+            return self;
+        }
+    };
+
+    return self;
 }
 
 UKMresources.radioButtons = function($) {
@@ -291,17 +311,17 @@ UKMresources.radioButtons = function($) {
         var radioButtons = $(e.target).parents('.radioButtons');
         $(e.target).siblings().removeClass('btn-primary selected').addClass('btn-default');
         $(e.target).addClass('btn-primary').removeClass('btn-default');
-        $('#radioButtonValue_'+ radioButtons.attr('data-name')).val(
+        $('#radioButtonValue_' + radioButtons.attr('data-name')).val(
             $(e.target).val()
         ).change();
     });
-    
-    $(document).ready(()=>{
+
+    $(document).ready(() => {
         $('.radioButtons').each(
             (index, item) => {
                 var name = $(item).attr('data-name');
                 $(item).parents('form').append(
-                    $('<input type="hidden" name="'+ name +'" id="radioButtonValue_'+ name +'" />')
+                    $('<input type="hidden" name="' + name + '" id="radioButtonValue_' + name + '" />')
                 );
                 $(item).find('.selected').click();
             }
@@ -310,34 +330,34 @@ UKMresources.radioButtons = function($) {
 }(jQuery);
 
 
-UKMresources.optionCard = function ($) {
+UKMresources.optionCard = function($) {
     var groups = new Map();
 
     var emitter = UKMresources.emitter('optionCard');
 
-    var group = function (group_id) {
+    var group = function(group_id) {
         var groupSelector = '.optionCard[data-group="' + group_id + '"]';
 
         $('.optionCard').parents('form').append(
-            $('<input type="hidden" name="'+ group_id +'" id="input_'+ group_id +'" />')
+            $('<input type="hidden" name="' + group_id + '" id="input_' + group_id + '" />')
         );
 
         var that = {
             value: null,
 
-            val: function () {
+            val: function() {
                 return that.value;
             },
 
-            select: function (value) {
+            select: function(value) {
                 $(groupSelector).removeClass('selected');
                 $('.optionCard[data-value="' + value + '"]').addClass('selected');
                 that.value = value;
-                $('#input_'+ group_id).val( value );
+                $('#input_' + group_id).val(value);
                 emitter.emit(group_id, value);
             },
 
-            init: function () {
+            init: function() {
                 $(groupSelector).each(
                     (index, item) => {
                         if ($(item).hasClass('selected')) {
@@ -351,7 +371,7 @@ UKMresources.optionCard = function ($) {
     };
 
     var self = {
-        init: function () {
+        init: function() {
             $('.optionCard').each(
                 (index, item) => {
                     var group_id = $(item).attr('data-group');
@@ -367,7 +387,7 @@ UKMresources.optionCard = function ($) {
             self.bind();
         },
 
-        click: function (e) {
+        click: function(e) {
             if ($(e.target).hasClass('optionCard')) {
                 var clicked = $(e.target);
             } else {
@@ -383,7 +403,7 @@ UKMresources.optionCard = function ($) {
         },
 
         on: function(event, callback) {
-            emitter.on(event,callback);
+            emitter.on(event, callback);
         }
 
     };
