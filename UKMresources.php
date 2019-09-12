@@ -27,6 +27,7 @@ function UKMresources() {
 	wp_register_script('handlebars_js', plugin_dir_url( __FILE__ ) .'js/handlebars.js');
 
 	wp_register_script('jQuery-fastlivefilter', plugin_dir_url( __FILE__ ) .'js/jquery.fastLiveFilter.js');
+    wp_register_script('jQuery_autogrow', plugin_dir_url( __FILE__ ) .'js/autogrow.jquery.js');
 
 	wp_register_script('bootstrap_js', plugin_dir_url( __FILE__ ) .'js/bootstrap.min.js');
 	wp_register_style('bootstrap_css', plugin_dir_url( __FILE__ ) .'css/bootstrap.min.css');
