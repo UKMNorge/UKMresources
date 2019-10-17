@@ -353,7 +353,7 @@ UKMresources.radioButtons = function($) {
             (index, item) => {
                 var name = $(item).attr('data-name');
                 $(item).parents('form').append(
-                    $('<input type="hidden" name="' + name + '" id="radioButtonValue_' + name + '" />')
+                    $('<input type="hidden" name="' + name + '" id="radioButtonValue_' + name + '" data-radiobutton="true" />')
                 );
                 $(item).find('.selected').click();
             }
@@ -371,7 +371,7 @@ UKMresources.optionCard = function($) {
         var groupSelector = '.optionCard[data-group="' + group_id + '"]';
 
         $('.optionCard').parents('form').append(
-            $('<input type="hidden" name="' + group_id + '" id="input_' + group_id + '" />')
+            $('<input type="hidden" name="' + group_id + '" id="input_' + group_id + '" data-optiongroup="true" />')
         );
 
         var that = {
