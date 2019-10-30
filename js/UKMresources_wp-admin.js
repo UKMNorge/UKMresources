@@ -69,13 +69,13 @@ jQuery(document).ready(() => {
 
 
 // Bind input value to html-tag
-$(document).ready(() => {
-    $('.bind').each((index, element) => {
-        var bind = $(element);
-        var trigger = $(bind.attr('data-bind'));
+jQuery(document).ready(() => {
+    jQuery('.bind').each((index, element) => {
+        var bind = jQuery(element);
+        var trigger = jQuery(bind.attr('data-bind'));
         bind.attr('data-default', bind.html());
 
-        $(document).on('change keyup', bind.attr('data-bind'), () => {
+        jQuery(document).on('change keyup', bind.attr('data-bind'), () => {
             if (trigger.val() == '') {
                 bind.html(bind.attr('data-default'));
             } else {
