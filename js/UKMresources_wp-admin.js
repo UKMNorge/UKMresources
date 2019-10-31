@@ -70,12 +70,12 @@ jQuery(document).ready(function() {
 
 // Bind input value to html-tag
 jQuery(document).ready(function() {
-    jQuery('.bind').each((index, element) => {
+    jQuery('.bind').each(function(index, element) {
         var bind = jQuery(element);
         var trigger = jQuery(bind.attr('data-bind'));
         bind.attr('data-default', bind.html());
 
-        jQuery(document).on('change keyup', bind.attr('data-bind'), () => {
+        jQuery(document).on('change keyup', bind.attr('data-bind'), function() {
             if (trigger.val() == '') {
                 bind.html(bind.attr('data-default'));
             } else {
