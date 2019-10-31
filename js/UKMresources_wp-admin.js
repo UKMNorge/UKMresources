@@ -60,7 +60,7 @@ jQuery.extend({
 });
 
 
-jQuery(document).ready(() => {
+jQuery(document).ready(function() {
     jQuery(".datepicker_kommune").datepicker({ minDate: new Date(SEASON, 0, 1), maxDate: new Date(SEASON, 2, 31), dateFormat: 'dd.mm.yy' });
     jQuery(".datepicker_fylke").datepicker({ minDate: new Date(SEASON, 2, 1), maxDate: new Date(SEASON, 3, 30), dateFormat: 'dd.mm.yy' });
     jQuery(".datepicker_fylke_forward").datepicker({ minDate: new Date(SEASON, 1, 1), maxDate: new Date(SEASON, 3, 30), dateFormat: 'dd.mm.yy' });
@@ -69,7 +69,7 @@ jQuery(document).ready(() => {
 
 
 // Bind input value to html-tag
-jQuery(document).ready(() => {
+jQuery(document).ready(function() {
     jQuery('.bind').each((index, element) => {
         var bind = jQuery(element);
         var trigger = jQuery(bind.attr('data-bind'));

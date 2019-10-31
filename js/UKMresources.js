@@ -175,7 +175,7 @@ UKMresources.GUI = function($) {
         }
         */
         var self = {
-            handleFatalError: (message) => {
+            handleFatalError: function(message) {
                 $(options.containers.main).slideUp();
                 $(options.containers.fatalError)
                     .html('Beklager, en kritisk feil har oppstått. ' +
@@ -186,21 +186,21 @@ UKMresources.GUI = function($) {
                     .slideDown();
             },
 
-            handleError: (message, raw_response) => {
+            handleError: function(message, raw_response) {
                 $(options.containers.error).fadeIn();
             },
 
-            handleSuccess: (response) => {
+            handleSuccess: function(response) {
                 $(options.containers.success).fadeIn();
             },
 
-            showLoading: () => {
+            showLoading: function() {
                 $(options.containers.success).stop().hide();
                 $(options.containers.error).stop().hide();
                 $(options.containers.loading).stop().fadeIn();
             },
 
-            hideLoading: () => {
+            hideLoading: function() {
                 $(options.containers.loading).stop().hide();
             },
 
@@ -219,7 +219,7 @@ UKMresources.Request = function($) {
         var GUI = UKMresources.GUI(options);
 
         var self = {
-            handleResponse: (response) => {
+            handleResponse: function(response) {
                 if (response.success) {
                     self.handleSuccess(response);
                 } else {
@@ -228,7 +228,7 @@ UKMresources.Request = function($) {
                 return true;
             },
 
-            handleSuccess: (response) => {
+            handleSuccess: function(response) {
                 if (response.count < count) {
                     return true;
                 }
@@ -237,12 +237,12 @@ UKMresources.Request = function($) {
                 options.handleSuccess(response);
             },
 
-            handleError: (message, raw_response) => {
+            handleError: function(message, raw_response) {
                 GUI.handleError(message, raw_response);
                 options.handleError(message, raw_response);
             },
 
-            do: (data) => {
+            do: function(data) {
                 count++;
                 GUI.showLoading();
 
@@ -259,7 +259,7 @@ UKMresources.Request = function($) {
                             GUI.handleFatalError('En ukjent feil oppsto: ' + error);
                         }
                     })
-                    .fail((response) => {
+                    .fail(function(response) {
                         GUI.hideLoading();
                         GUI.handleFatalError('En ukjent server-feil oppsto');
                     });
@@ -315,7 +315,7 @@ UKMresources.emitter = function(_navn) {
             return self;
         },
 
-        enableDebug: () => {
+        enableDebug: function() {
             debug = true;
         },
 
@@ -339,7 +339,7 @@ UKMresources.emitter = function(_navn) {
 }
 
 UKMresources.radioButtons = function($) {
-    $(document).on('click', '.radioButtons > button', (e) => {
+    $(document).on('click', '.radioButtons > button', function(e) {
         var radioButtons = $(e.target).parents('.radioButtons');
         $(e.target).siblings().removeClass('btn-primary selected').addClass('btn-default');
         $(e.target).addClass('btn-primary').removeClass('btn-default');
@@ -348,9 +348,9 @@ UKMresources.radioButtons = function($) {
         ).change();
     });
 
-    $(document).ready(() => {
+    $(document).ready(function() {
         $('.radioButtons').each(
-            (index, item) => {
+            function(index, item) {
                 var name = $(item).attr('data-name');
                 $(item).parents('form').append(
                     $('<input type="hidden" name="' + name + '" id="radioButtonValue_' + name + '" data-radiobutton="true" />')
@@ -391,7 +391,7 @@ UKMresources.optionCard = function($) {
 
             init: function() {
                 $(groupSelector).each(
-                    (index, item) => {
+                    function(index, item) {
                         if ($(item).hasClass('selected')) {
                             that.select($(item).attr('data-value'));
                         }
@@ -405,14 +405,14 @@ UKMresources.optionCard = function($) {
     var self = {
         init: function() {
             $('.optionCard').each(
-                (index, item) => {
+                function(index, item) {
                     var group_id = $(item).attr('data-group');
                     if (!groups.has(group_id)) {
                         groups.set(group_id, new group(group_id));
                     }
                 }
             );
-            groups.forEach((group) => {
+            groups.forEach(function(group) {
                 group.init();
             });
 
@@ -430,7 +430,7 @@ UKMresources.optionCard = function($) {
             ).select(clicked.attr('data-value'));
         },
 
-        bind: () => {
+        bind: function() {
             $(document).on('click', '.optionCard', self.click);
         },
 
