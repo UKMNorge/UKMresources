@@ -442,3 +442,106 @@ UKMresources.optionCard = function($) {
 
     return self;
 }(jQuery);
+
+
+/**
+ * UKMresources.filter(filter_container);
+ * 
+ * @emits: change(number_of_visible_items)
+ * 
+ * Works automagically, but requires following HTML structure
+ * <div class="UKMfilter" id="[filter_container]">
+ *  <input name="search" />
+ *  <div class="items">
+ *    <div class="item" data-filter="[filter_value]"></div>
+ *  </div>
+ * </div>
+ */
+UKMresources.filter = function($) {
+    return function(filter_container) {
+        var emitter = new UKMresources.emitter(filter_container);
+        var numVisible = 0;
+
+        var selector = {
+            getSearch: function() {
+                return filter_container + ' input[name="search"]';
+            },
+            getNoneFound: function() {
+                return filter_container + ' .noneFound';
+            },
+            getItem: function() {
+                return filter_container + ' .items .item';
+            },
+        };
+
+        var self = {
+            bind: function() {
+                $(document).on('keyup', selector.getSearch(), self.filter);
+                $(document).ready(function() {
+                    self.count();
+                });
+            },
+
+            filter: function() {
+                var words = $(selector.getSearch()).val().toLowerCase().split(' ');
+                $(selector.getItem()).hide();
+
+                $(selector.getItem()).filter(function(index, element) {
+                    var searchIn = $(element).attr('data-filter').toLowerCase();
+                    var found = false;
+                    words.forEach(function(word) {
+                        if (searchIn.indexOf(word) !== -1) {
+                            found = true;
+                            return; // bryter ut av forEach
+                        }
+                    });
+                    return found; // faktisk resultat
+                }).show();
+
+                self.count();
+                self.addCountHelper();
+                self.toggleNoneFound();
+            },
+
+            count: function() {
+                numVisible = $(selector.getItem() + ':visible').length;
+                return numVisible;
+            },
+            getCount: function() {
+                return numVisible;
+            },
+
+            toggleNoneFound: function() {
+                $(selector.getNoneFound()).stop();
+                if (self.getCount() == 0) {
+                    $(selector.getNoneFound()).fadeIn(200);
+                } else {
+                    $(selector.getNoneFound()).hide();
+                }
+            },
+
+            addCountHelper: function() {
+                $(filter_container).removeClass('found-none found-few found-many').attr('data-count', self.getCount());
+                if (self.getCount() == 0) {
+                    $(filter_container).addClass('found-none');
+                } else if (self.getCount() < 5) {
+                    $(filter_container).addClass('found-few');
+                } else {
+                    $(filter_container).addClass('found-many');
+                }
+                emitter.emit('change', self.getCount());
+            },
+
+            on: function(callback) {
+                emitter.on(callback);
+            },
+            once: function(callback) {
+                emitter.once(callback);
+            }
+        }
+
+        self.bind();
+
+        return self;
+    }
+}(jQuery);
