@@ -460,6 +460,7 @@ UKMresources.optionCard = function($) {
 UKMresources.filter = function($) {
     return function(filter_container) {
         var emitter = new UKMresources.emitter(filter_container);
+        //emitter.enableDebug();
         var numVisible = 0;
 
         var selector = {
@@ -484,6 +485,10 @@ UKMresources.filter = function($) {
 
             filter: function() {
                 var words = $(selector.getSearch()).val().toLowerCase().split(' ');
+
+                if ($(selector.getSearch()).val() == '') {
+                    emitter.emit('reset');
+                }
                 $(selector.getItem()).hide();
 
                 $(selector.getItem()).filter(function(index, element) {
@@ -510,6 +515,9 @@ UKMresources.filter = function($) {
             getCount: function() {
                 return numVisible;
             },
+            getItemCount: function() {
+                return $(selector.getItem()).length;
+            },
 
             toggleNoneFound: function() {
                 $(selector.getNoneFound()).stop();
@@ -532,11 +540,11 @@ UKMresources.filter = function($) {
                 emitter.emit('change', self.getCount());
             },
 
-            on: function(callback) {
-                emitter.on(callback);
+            on: function(event, callback) {
+                emitter.on(event, callback);
             },
-            once: function(callback) {
-                emitter.once(callback);
+            once: function(event, callback) {
+                emitter.once(event, callback);
             }
         }
 
