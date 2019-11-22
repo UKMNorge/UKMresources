@@ -191,3 +191,16 @@ a.btn.btn-ukm:active {
 a.btn.btn-ukm:hover {
     text-decoration: none;
 }
+
+.btn.btn-ukm.superadmin,
+.btn.btn-ukm.superadmin:hover {
+    background: #ff128b;
+}
+
+a.btn.btn-ukm.superadmin,
+a.btn.btn-ukm.superadmin:visited,
+a.btn.btn-ukm.superadmin:focus,
+a.btn.btn-ukm.superadmin:active {
+    color: #ff128b;
+    text-decoration: none;
+}
