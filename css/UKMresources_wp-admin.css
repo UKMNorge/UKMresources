@@ -194,7 +194,7 @@ a.btn.btn-ukm:hover {
 
 .btn.btn-ukm.superadmin,
 .btn.btn-ukm.superadmin:hover {
-    background: #ff128b;
+    border-color: #ff128b;
 }
 
 a.btn.btn-ukm.superadmin,
