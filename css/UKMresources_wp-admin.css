@@ -176,6 +176,11 @@ input[type='checkbox'].form-control {
     box-shadow: rgba(66, 139, 202, .2) 0.2em 0.2em 0.4em;
 }
 
+.btn.btn-ukm.btn-xs {
+    font-size: .8em;
+    padding: 0.3em .5em !important;
+}
+
 .btn.btn-ukm:hover {
     background: rgba(91, 192, 222, .05);
 }
@@ -204,3 +209,30 @@ a.btn.btn-ukm.superadmin:active {
     color: #ff128b;
     text-decoration: none;
 }
+
+p.superadmin,
+div.superadmin {
+    border: 1px solid rgba(255, 18, 139, .50);
+    border-left: 5px solid #ff128b;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: .7em;
+    padding-left: 1em;
+    background: rgba(255, 18, 139, .01);
+}
+
+
+/*
+p.superadmin::before,
+div.superadmin::before {
+    content: "SUPERADMIN:";
+    position: relative;
+    bottom: 2.4em;
+    margin-left: -1.7em;
+    font-size: .7em;
+    color: #ff128b;
+    display: block;
+    float: left;
+    margin-bottom: -2em;
+}
+*/
