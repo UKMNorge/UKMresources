@@ -1,33 +1,77 @@
-jQuery(document).ready(function(){
-	var url = window.location.href.split('?')[0] + '?page=UKMSMS_gui';
-	var form = jQuery('<form action="' + url + '" method="post" id="UKMSMS_form">' +
-						 '<input type="hidden" name="UKMSMS_recipients" id="UKMSMS_to" value="" />' +
-					  '</form>');
-	jQuery('body').append(form);
+var UKMSMS = function($) {
+    var mottakere = new Map();
 
+    var self = {
+        go: function(mobil, navn) {
+            self.add(mobil, navn);
+            self.submit();
+        },
+        add: function(mobil, navn) {
+            if (!mottakere.has()) {
+                mottakere.set(mobil, []);
+            }
+            if (navn == undefined) {
+                navn = 'Ukjent';
+            }
+            if (!mottakere.get(mobil).includes(navn)) {
+                mottakere.get(mobil).push(navn);
+            }
+        },
+        submit: function() {
+            // Konverter navneliste til skjema-data
+            // list brukes for gamlemåten (csv)
+            var list = '';
+            mottakere.forEach(function(navneliste, mobil) {
+                $('#UKMSMS_form').append(
+                    $('<input type="hidden" name="recipients[' + mobil + ']" />')
+                    .attr(
+                        'value',
+                        JSON.stringify(navneliste)
+                    )
+                );
+                list += mobil + ',';
+            });
 
+            list = list.substring(0, list.length - 1);
 
-	registerUKMSMS('body');
-	
-	jQuery(document).on('click', '.UKMSMS_link', function() {
-		jQuery('#UKMSMS_to').val(jQuery(this).attr('data-to'));
-		jQuery('#UKMSMS_form').submit();
-	});
-});
+            $('#UKMSMS_to').attr('value', list);
+            $('#UKMSMS_form').submit();
+        },
+        init: function() {
+            $('body').append(
+                $(
+                    '<form action="' + window.location.href.split('?')[0] + '?page=UKMSMS_gui' + '" method="post" id="UKMSMS_form">' +
+                    '<input type="hidden" name="UKMSMS_recipients" id="UKMSMS_to" value="" />' +
+                    '</form>'
+                )
+            );
+        },
+        bind: function() {
+            // Generer form onPageInit
+            $(document).ready(function() {
+                self.init();
+            });
+            // Klikk på enkeltnummer
+            $(document).on('click', '.UKMSMS', function() {
+                self.go(
+                    $(this).attr('data-to'),
+                    $(this).attr('data-navn')
+                );
+            });
+            // Klikk for å sende til alle på siden
+            $(document).on('click', '.UKMSMSsendToAll', function() {
+                $('.UKMSMS').each(function() {
+                    self.add(
+                        $(this).attr('data-to'),
+                        $(this).attr('data-navn')
+                    )
+                });
+                self.submit();
+            });
+        }
+    }
 
+    self.bind();
 
-function registerUKMSMS(selector) {
-	jQuery(selector).find('.UKMSMS').each(function(){
-		jQuery(this).html( '<a href="#" class="UKMSMS_link" data-to="'+jQuery(this).html()+'">'+ jQuery(this).html() + '</a>');
-	});
-}
-
-
-jQuery(document).on('click','#UKMSMSTOALL', function(){
-	var recipients = new Array();
-	jQuery('.UKMSMS').each(function(){
-		recipients.push( jQuery(this).find('a').html() );
-	});
-	jQuery('#UKMSMS_to').val( recipients.join(',') );
-	jQuery('#UKMSMS_form').submit();
-});
+    return self;
+}(jQuery);
