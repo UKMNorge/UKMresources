@@ -559,3 +559,112 @@ UKMresources.filter = function($) {
         return self;
     }
 }(jQuery);
+
+UKMresources.tid = function(_seconds) {
+    var hours = Math.floor(_seconds / 3600);
+    var minutes = Math.floor(_seconds % 3600 / 60);
+    var seconds = Math.floor((_seconds % 3600) % 60);
+
+    var military = false;
+
+    var template_long = {
+        hour: '%h time',
+        hours: '%h timer',
+        minute: '%m minutt',
+        minutes: '%m minutter',
+        second: '%s sekund',
+        seconds: '%s sekunder',
+        comma: ', ',
+        and: ' og '
+    };
+
+    var template_short = {
+        hour: '%ht',
+        hours: '%ht',
+        minute: '%mm',
+        minutes: '%mm',
+        second: '%ss',
+        seconds: '%ss',
+        comma: ' ',
+        and: ' '
+    };
+
+    var template = template_long;
+
+    var self = {
+        __toString: function() {
+            return self.render();
+        },
+
+        useShort: function() {
+            template = template_short;
+            military = false;
+            return self;
+        },
+        useLong: function() {
+            template = template_long;
+            military = false;
+            return self;
+        },
+        useMilitary: function() {
+            military = true;
+            return self;
+        },
+
+        render: function() {
+            var string = '';
+
+            if (military) {
+                if (hours > 0) {
+                    string = '%h:';
+                }
+                string += '%m:%s'
+
+                return string
+                    .replace('%h', String(hours).padStart(2, '0'))
+                    .replace('%m', String(minutes).padStart(2, '0'))
+                    .replace('%s', String(seconds).padStart(2, '0'))
+            }
+
+            if (hours == 1) {
+                string += template.hour.replace('%h', 1);
+            } else if (hours > 1) {
+                string += template.hours.replace('%h', hours);
+            }
+
+            if (minutes > 0 && hours > 0) {
+                if (seconds == 0) {
+                    string += template.and;
+                } else {
+                    string += template.comma;
+                }
+            } else if (minutes == 0 && seconds > 0) {
+                string += template.and;
+            }
+
+            if (minutes == 1) {
+                string += template.minute.replace('%m', minutes);
+            } else if (minutes > 1) {
+                string += template.minutes.replace('%m', minutes);
+            }
+
+            if (minutes > 0 && seconds > 0) {
+                string += template.and;
+            }
+
+            if (seconds == 1) {
+                string += template.second.replace('%s', 1);
+            } else if (seconds > 1) {
+                string += template.seconds.replace('%s', seconds);
+            }
+
+            return string;
+        }
+    }
+
+    return self;
+}
+
+jQuery(document).ready(function() {
+    UKMresources.optionCard.init();
+});
