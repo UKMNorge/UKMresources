@@ -364,8 +364,10 @@ UKMresources.radioButtons = function($) {
 
 UKMresources.optionCard = function($) {
     var groups = new Map();
+    var currentValue = new Map();
 
     var emitter = UKMresources.emitter('optionCard');
+    //emitter.enableDebug();
 
     var group = function(group_id) {
         var groupSelector = '.optionCard[data-group="' + group_id + '"]';
@@ -387,6 +389,7 @@ UKMresources.optionCard = function($) {
                 that.value = value;
                 $('#input_' + group_id).val(value);
                 emitter.emit(group_id, value);
+                currentValue.set(group_id, value);
             },
 
             init: function() {
@@ -436,6 +439,9 @@ UKMresources.optionCard = function($) {
 
         on: function(event, callback) {
             emitter.on(event, callback);
+        },
+        pullStatus: function(group_id) {
+            emitter.emit(group_id, currentValue.get(group_id));
         }
 
     };

@@ -191,6 +191,7 @@ a.btn.btn-ukm:focus,
 a.btn.btn-ukm:active {
     color: #0073aa;
     text-decoration: none;
+    text-shadow: none;
 }
 
 a.btn.btn-ukm:hover {
@@ -208,6 +209,22 @@ a.btn.btn-ukm.superadmin:focus,
 a.btn.btn-ukm.superadmin:active {
     color: #ff128b;
     text-decoration: none;
+}
+
+a.btn.btn-ukm.btn-success,
+a.btn.btn-ukm.btn-success:hover,
+a.btn.btn-ukm.btn-success:visited,
+a.btn.btn-ukm.btn-success:focus,
+a.btn.btn-ukm.btn-success:active {
+    color: #0daa00;
+    border-color: #0daa00;
+}
+
+a.btn.btn-ukm.btn-success:focus,
+a.btn.btn-ukm.btn-success:hover,
+a.btn.btn-ukm.btn-success:active {
+    background-color: #abd8a8;
+    color: #163214;
 }
 
 p.superadmin,
