@@ -307,9 +307,10 @@ UKMresources.emitter = function(_navn) {
         },
 
         on: function(event, callback) {
+            //console.info(navn + '.ON(' + event + ')', callback);
             if (_events[event] == null) {
                 _events[event] = [callback];
-                return;
+                return self;
             }
             _events[event].push(callback);
             return self;
@@ -328,7 +329,7 @@ UKMresources.emitter = function(_navn) {
         once: function(event, callback) {
             if (_onetimeEvents[event] == null) {
                 _onetimeEvents[event] = [callback];
-                return;
+                return self;
             }
             _onetimeEvents[event].push(callback);
             return self;
@@ -385,7 +386,7 @@ UKMresources.optionCard = function($) {
 
             select: function(value) {
                 $(groupSelector).removeClass('selected');
-                $('.optionCard[data-value="' + value + '"]').addClass('selected');
+                $(groupSelector + '.optionCard[data-value="' + value + '"]').addClass('selected');
                 that.value = value;
                 $('#input_' + group_id).val(value);
                 emitter.emit(group_id, value);
@@ -442,6 +443,9 @@ UKMresources.optionCard = function($) {
         },
         pullStatus: function(group_id) {
             emitter.emit(group_id, currentValue.get(group_id));
+        },
+        status: function(group_id) {
+            return currentValue.get(group_id);
         }
 
     };
