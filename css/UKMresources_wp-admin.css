@@ -220,6 +220,15 @@ a.btn.btn-ukm.btn-success:active {
     border-color: #0daa00;
 }
 
+a.btn.btn-ukm.btn-danger,
+a.btn.btn-ukm.btn-danger:hover,
+a.btn.btn-ukm.btn-danger:visited,
+a.btn.btn-ukm.btn-danger:focus,
+a.btn.btn-ukm.btn-danger:active {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
 a.btn.btn-ukm.btn-success:focus,
 a.btn.btn-ukm.btn-success:hover,
 a.btn.btn-ukm.btn-success:active {
