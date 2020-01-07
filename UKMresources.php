@@ -48,6 +48,7 @@ function UKMresources() {
 function UKMconstants() {
     echo '<script type="text/javascript">'.
             'var SEASON = '. get_site_option('season') .';'.
-            'var GOOGLE_API_KEY = "'. (defined('GOOGLE_API_KEY') ? GOOGLE_API_KEY : '') .'";' .
+			'var GOOGLE_API_KEY = "'. (defined('GOOGLE_API_KEY') ? GOOGLE_API_KEY : '') .'";' .
+			'var UKM_HOSTNAME = "' . UKM_HOSTNAME . '";' . 
         '</script>';
 }
