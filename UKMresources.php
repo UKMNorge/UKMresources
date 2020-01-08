@@ -43,6 +43,7 @@ function UKMresources() {
 	
 	
     wp_register_script( 'TwigJS', plugin_dir_url( __FILE__ ) .'js/twig.js');
+    wp_register_script( 'dropzone', plugin_dir_url( __FILE__ ) .'js/dropzone.js');
 }
 
 function UKMconstants() {
