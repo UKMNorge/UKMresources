@@ -183,6 +183,11 @@ input[type='checkbox'].form-control {
     padding: 0.3em .5em !important;
 }
 
+.btn.btn-ukm.btn-sm {
+    font-size: 1em;
+    padding: 0.5em .8em !important;
+}
+
 .btn.btn-ukm:hover {
     background: rgba(91, 192, 222, .05);
 }
