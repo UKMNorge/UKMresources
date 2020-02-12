@@ -669,6 +669,42 @@ UKMresources.tid = function(_seconds) {
     return self;
 }
 
+UKMresources.toggle = function($) {
+    return function(container_selector) {
+        var toggle_selector = container_selector + ' .toggle';
+        var self = {
+            init: function() {
+                self.bind();
+                // Autoset data-hide / data-show hvis mulig
+                $(toggle_selector).each(function() {
+                    if ($(this).is(':visible') && !$(this).data('show')) {
+                        $(this).data('show', $(this).text());
+                    } else if ($(this).not(':visible') && !$(this).data('hide')) {
+                        $(this).data('hide', $(this).text());
+                    }
+                });
+            },
+            bind: function() {
+                //console.log('Bind @ ' + container_selector + ' .toggle');
+                $(document).on('click', container_selector + ' .toggle', self.click);
+            },
+            click: function(e) {
+                var button = $(this);
+                var container = $(button.data('target'));
+                if (container.is(':visible')) {
+                    container.slideUp();
+                    button.text(button.data('show'));
+                } else {
+                    container.slideDown();
+                    button.text(button.data('hide'));
+                }
+            }
+        }
+        self.init();
+        return self;
+    }
+}(jQuery);
+
 jQuery(document).ready(function() {
     UKMresources.optionCard.init();
 });

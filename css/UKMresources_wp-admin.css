@@ -183,68 +183,96 @@ input[type='checkbox'].form-control {
     padding: 0.3em .5em !important;
 }
 
+.btn.btn-ukm.btn-sm {
+    font-size: 1em;
+    padding: 0.5em .8em !important;
+}
+
 .btn.btn-ukm:hover {
     background: rgba(91, 192, 222, .05);
 }
 
-a.btn.btn-ukm {
+.btn.btn-ukm {
     color: #0073aa;
     text-decoration: none;
     text-shadow: none;
 }
-a.btn.btn-ukm:hover {
+
+.btn.btn-ukm:hover {
     color: #fff;
     background-color: #0073aa;
 }
-a.btn.btn-ukm:active {
+
+.btn.btn-ukm:active {
     color: #fff;
     background-color: #0074aab2;
     border-color: #0074aab2;
 }
 
-a.btn.btn-ukm.superadmin {
+.btn.btn-ukm.superadmin {
     color: #ff128b;
     text-decoration: none;
     border-color: #ff128b;
 }
+
 .btn.btn-ukm.superadmin:hover {
     background-color: #ff128b;
-    color:  #fff;
-}
-a.btn.btn-ukm.superadmin:active {
-    background-color: #ff128bd6;
-    border-color: #ff128bd6;
-    color:  #fff;
+    color: #fff;
 }
 
-a.btn.btn-ukm.btn-success {
+.btn.btn-ukm.superadmin:active {
+    background-color: #ff128bd6;
+    border-color: #ff128bd6;
+    color: #fff;
+}
+
+.btn.btn-ukm.btn-success {
     color: #0daa00;
     border-color: #0daa00;
 }
-a.btn.btn-ukm.btn-success:hover {
+
+.btn.btn-ukm.btn-success:hover {
     background-color: #0daa00;
     color: #fff;
 }
-a.btn.btn-ukm.btn-success:active {
+
+.btn.btn-ukm.btn-success:active {
     background-color: #0eaa008a;
     border-color: #0eaa008a;
     color: #fff;
 }
 
-a.btn.btn-ukm.btn-danger{
+.btn.btn-ukm.btn-danger {
     color: #dc3545;
     border-color: #dc3545;
 }
-a.btn.btn-ukm.btn-danger:hover {
+
+.btn.btn-ukm.btn-danger:hover {
     color: #fff;
     background-color: #dc3545;
 }
-a.btn.btn-ukm.btn-danger:active  {
+
+.btn.btn-ukm.btn-danger:active {
     color: #fff;
-    background-color: #dc3546a9;
-    border-color: #dc3546a9;
+    background-color: #dc3545;
+    border-color: #dc3545;
 }
 
+.btn.btn-ukm.btn-warning {
+    color: #f0ad4e;
+    border-color: #f0ad4e;
+}
+
+.btn.btn-ukm.btn-warning:hover {
+    color: #fff;
+    background-color: #f0ad4e;
+}
+
+.btn.btn-ukm.btn-warning:active {
+    color: #fff;
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+}
 
 p.superadmin,
 div.superadmin {
