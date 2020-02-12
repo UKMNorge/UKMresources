@@ -4,7 +4,7 @@ var UKMresources = {};
  * Fade-collapsible
  */
 jQuery(document).on('click', '.fade-collapsible .actions', function() {
-    var collapsible = $(this).parents('.fade-collapsible');
+    var collapsible = jQuery(this).parents('.fade-collapsible');
     var content = collapsible.find('.content');
 
     content.toggleClass('-expanded');
