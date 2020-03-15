@@ -389,8 +389,8 @@ UKMresources.optionCard = function($) {
                 $(groupSelector + '.optionCard[data-value="' + value + '"]').addClass('selected');
                 that.value = value;
                 $('#input_' + group_id).val(value);
-                emitter.emit(group_id, value);
                 currentValue.set(group_id, value);
+                emitter.emit(group_id, value);
             },
 
             init: function() {
