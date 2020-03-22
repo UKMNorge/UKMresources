@@ -251,7 +251,7 @@ UKMresources.Request = function($) {
                 data.controller = options.controller;
                 data.count = count;
 
-                $.post(ajaxurl, data, function(response) {
+                $.post((options.url || ajaxurl), data, function(response) {
                         GUI.hideLoading();
                         try {
                             self.handleResponse(response);
