@@ -1,5 +1,9 @@
 var UKMresources = {};
 
+jQuery.fn.slideToggleBool = function(bool, options) {
+    return bool ? jQuery(this).slideDown(options) : jQuery(this).slideUp(options);
+}
+
 /**
  * Fade-collapsible
  */
