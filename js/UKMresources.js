@@ -340,19 +340,63 @@ UKMresources.emitter = function(_navn) {
 }
 
 UKMresources.radioButtons = function($) {
+
+    var emitters = new Map();
+    emitters.set('global', new UKMresources.emitter('radioButtons'));
+    //emitters.get('global').enableDebug();
+
+    // Emitter-wrapper, kinda
+    var self = {
+        get: function(id) {
+            if (emitters.get(id)) {
+                return emitters.get(id);
+            }
+            self.register(id);
+            return emitters.get(id);
+        },
+
+        on: function(event, callback) {
+            self.get('global').on(event, callback);
+        },
+        once: function(event, callback) {
+            self.get('global').once(event, callback);
+        },
+        register: function(name) {
+            emitters.set(name, new UKMresources.emitter(name));
+            //emitters.get(name).enableDebug();
+        },
+        emit: function(name, event, value) {
+            self.get(name).emit(event, value);
+            emitters.get('global').emit(event, [name, value]);
+        },
+        san: function(name) {
+            return name.replace('[', '').replace(']', '');
+        }
+    }
+
     $(document).on('click', '.radioButtons > button', function(e) {
         var radioButtons = $(e.target).parents('.radioButtons');
+        var name = self.san(radioButtons.data('name'));
+        var value = $(e.target).val();
+
+        // Class toggle
         $(e.target).siblings().removeClass('btn-primary selected').addClass('btn-default');
         $(e.target).addClass('btn-primary').removeClass('btn-default');
-        $('#radioButtonValue_' + radioButtons.attr('data-name')).val(
-            $(e.target).val()
-        ).change();
+
+        // Input value change
+        $('#radioButtonValue_' + name)
+            .val(value)
+            .change();
+
+        // Emit
+        self.emit(name, 'change', value);
     });
 
     $(document).ready(function() {
         $('.radioButtons').each(
             function(index, item) {
-                var name = $(item).attr('data-name');
+                var name = self.san($(item).data('name'));
+                self.register(name);
                 $(item).parents('form').append(
                     $('<input type="hidden" name="' + name + '" id="radioButtonValue_' + name + '" data-radiobutton="true" />')
                 );
@@ -360,6 +404,8 @@ UKMresources.radioButtons = function($) {
             }
         );
     });
+
+    return self;
 }(jQuery);
 
 
