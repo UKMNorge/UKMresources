@@ -743,10 +743,14 @@ UKMresources.toggle = function($) {
                 var container = $(button.data('target'));
                 if (container.is(':visible')) {
                     container.slideUp();
-                    button.text(button.data('show'));
+                    if (button.data('show')) {
+                        button.text(button.data('show'));
+                    }
                 } else {
                     container.slideDown();
-                    button.text(button.data('hide'));
+                    if (button.data('hide')) {
+                        button.text(button.data('hide'));
+                    }
                 }
             }
         }
