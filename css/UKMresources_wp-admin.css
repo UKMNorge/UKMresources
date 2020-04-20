@@ -313,6 +313,10 @@ div.superadmin {
     padding-left: 1em;
 }
 
+.dashicons.superadmin {
+    color: #ff128b !important;
+}
+
 
 /*
 p.superadmin::before,
