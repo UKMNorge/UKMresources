@@ -21,7 +21,7 @@ function UKMresources() {
 	wp_enqueue_script('jqueryGoogleUI', '//code.jquery.com/ui/1.11.4/jquery-ui.min.js');
 	wp_enqueue_script('wp-admin_smslink', plugin_dir_url( __FILE__ ) .'js/wp-admin.smslink.js');
 	
-	wp_enqueue_script('UKMresources_wp-admin', plugin_dir_url( __FILE__ ) .'js/UKMresources_wp-admin.js');
+	wp_enqueue_script('UKMresources_wp-admin', plugin_dir_url( __FILE__ ) .'js/UKMresources_wp-admin.js?v2020-09-28');
 	wp_enqueue_script('UKMresources', plugin_dir_url( __FILE__ ) .'js/UKMresources.js');
 
 	wp_register_script('handlebars_js', plugin_dir_url( __FILE__ ) .'js/handlebars.js');
