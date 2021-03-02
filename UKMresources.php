@@ -41,7 +41,7 @@ function UKMresources() {
 	wp_register_script('WPbootstrap4_js', plugin_dir_url( __FILE__ ) .'js/bootstrap4-alpha2.min.js');
 	wp_register_style('WPbootstrap4_css', plugin_dir_url( __FILE__ ) .'css/bootstrap4-alpha2.min.css');
     
-    wp_register_style('WPgallery_css', plugin_dir_url( __FILE__ ) .'css/gallery.css');
+    wp_enqueue_style('WPgallery_css', plugin_dir_url( __FILE__ ) .'css/gallery.css');
 	
     wp_register_script( 'TwigJS', plugin_dir_url( __FILE__ ) .'js/twig.js');
     wp_register_script( 'dropzone', plugin_dir_url( __FILE__ ) .'js/dropzone.js');
