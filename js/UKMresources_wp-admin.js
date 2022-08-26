@@ -61,10 +61,10 @@ jQuery.extend({
 
 
 jQuery(document).ready(function() {
-    jQuery(".datepicker_kommune").datepicker({ minDate: new Date(SEASON, 0, 1), maxDate: new Date(SEASON + 2, 11, 31), dateFormat: 'dd.mm.yy' });
-    jQuery(".datepicker_fylke").datepicker({ minDate: new Date(SEASON, 0, 1), maxDate: new Date(SEASON + 2, 11, 30), dateFormat: 'dd.mm.yy' });
-    jQuery(".datepicker_fylke_forward").datepicker({ minDate: new Date(SEASON, 0, 1), maxDate: new Date(SEASON + 2, 11, 30), dateFormat: 'dd.mm.yy' });
-    jQuery(".datepicker_land").datepicker({ minDate: new Date(SEASON, 0, 1), maxDate: new Date(SEASON + 2, 11, 31), dateFormat: 'dd.mm.yy' });
+    jQuery(".datepicker_kommune").datepicker({ minDate: new Date(SEASON, 0, 1), maxDate: new Date(SEASON + 3, 11, 31), dateFormat: 'dd.mm.yy' });
+    jQuery(".datepicker_fylke").datepicker({ minDate: new Date(SEASON, 0, 1), maxDate: new Date(SEASON + 3, 11, 30), dateFormat: 'dd.mm.yy' });
+    jQuery(".datepicker_fylke_forward").datepicker({ minDate: new Date(SEASON, 0, 1), maxDate: new Date(SEASON + 3, 11, 30), dateFormat: 'dd.mm.yy' });
+    jQuery(".datepicker_land").datepicker({ minDate: new Date(SEASON, 0, 1), maxDate: new Date(SEASON + 3, 11, 31), dateFormat: 'dd.mm.yy' });
 });
 
 
