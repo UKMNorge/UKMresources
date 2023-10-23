@@ -40,11 +40,16 @@ function UKMresources() {
 	
 	wp_register_script('WPbootstrap4_js', PLUGIN_PATH . 'UKMresources/js/bootstrap4-alpha2.min.js');
 	wp_register_style('WPbootstrap4_css', PLUGIN_PATH . 'UKMresources/css/bootstrap4-alpha2.min.css');
+	wp_register_style('UKMArrSysStyle', '//assets.' . UKM_HOSTNAME . '//css/arr-sys.css');
+
     
     wp_enqueue_style('WPgallery_css', PLUGIN_PATH . 'UKMresources/css/gallery.css');
 	
     wp_register_script( 'TwigJS', PLUGIN_PATH . 'UKMresources/js/twig.js');
     wp_register_script( 'dropzone', PLUGIN_PATH . 'UKMresources/js/dropzone.js');
+
+    wp_register_script( 'VUEjs', 'https://unpkg.com/vue@3/dist/vue.global.js');
+	
 }
 
 function UKMconstants() {
