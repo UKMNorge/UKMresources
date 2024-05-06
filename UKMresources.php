@@ -29,7 +29,7 @@ function UKMresources() {
 	wp_register_script('jQuery-fastlivefilter', PLUGIN_PATH . 'UKMresources/js/jquery.fastLiveFilter.js');
     wp_register_script('jQuery_autogrow', PLUGIN_PATH . 'UKMresources/js/autogrow.jquery.js');
 
-	wp_register_script('bootstrap_js', PLUGIN_PATH . 'UKMresources/js/bootstrap.min.js');
+	// wp_register_script('bootstrap_js', PLUGIN_PATH . 'UKMresources/js/bootstrap.min.js');
 	// wp_register_style('bootstrap_css', PLUGIN_PATH . 'UKMresources/css/bootstrap.min.css');
 	wp_register_script('WPbootstrap_js', PLUGIN_PATH . 'UKMresources/js/bootstrap.min.js');
 	wp_register_style('WPbootstrap_css', PLUGIN_PATH . 'UKMresources/css/bootstrap.min.css');
