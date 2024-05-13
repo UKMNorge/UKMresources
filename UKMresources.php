@@ -52,10 +52,15 @@ function UKMresources() {
 	
 }
 
+
 function UKMconstants() {
-    echo '<script type="text/javascript">'.
+	$isMainSite = is_main_site() ? 'true' : 'false';
+	$blogName = is_main_site() ? 'arrangørsystemet' : get_bloginfo('name');
+	echo '<script type="text/javascript">'.
             'var SEASON = '. get_site_option('season') .';'.
 			'var GOOGLE_API_KEY = "'. (defined('GOOGLE_API_KEY') ? GOOGLE_API_KEY : '') .'";' .
 			'var UKM_HOSTNAME = "' . UKM_HOSTNAME . '";' . 
+			'var isMainSite = "' . $isMainSite . '";' . 
+			'var blogName = "' . $blogName . '";' . 
         '</script>';
 }
