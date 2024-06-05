@@ -29,7 +29,7 @@ var UKMSMS = function($) {
                         JSON.stringify(navneliste)
                     )
                 );
-                list += mobil + ',';
+                list += '[' + mobil + ', ' + navneliste  + ']' + ',';
             });
 
             list = list.substring(0, list.length - 1);
